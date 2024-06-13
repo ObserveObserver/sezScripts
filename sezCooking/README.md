@@ -11,17 +11,21 @@ TODO features:
 1. Scripted lists in advanced settings, [Shark,Tuna] where if you're out of sharks, it'll do tunas next.
 
 2. Gaussian sleeps. normalSleep(min,avg,max) (banks idea, though I want to push it farther)
+3. 
  It's there, I just have to test it more and tweak it (3 standard deviations seems too consistent lol)
+
 2.5. Gaussian sleeps which indicate player fatigue (longer sleeps the longer the bot goes)
+
 2.75. Lopsided, more flat distribution over time to indicate longer break cycles.
+
 2.97. This will be included as a library function.
 
-3. Sleep power ratio setting. If your ping is high, you can set a slider to give the sleeps a little more leeway.
+5. Sleep power ratio setting. If your ping is high, you can set a slider to give the sleeps a little more leeway.
 
-4. Automatic detection of food in simple mode.
+6. Automatic detection of food in simple mode.
 
-5. Break handling, I will make this into it's own library.
+7. Break handling, I will make this into it's own library.
 
-6. Making pies (inventory management)
+8. Making pies (inventory management)
 
-7. refactor "food: Int" to use Inventory monoid
+9. refactor "food: Int" to use Inventory monoid
