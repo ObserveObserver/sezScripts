@@ -4,7 +4,7 @@ atm supports pretty much everywhere, including rogues den. food has to be change
 
 Features:
 
-Rogues den, anywhere with a range I think. Bank has to be close for now.
+Rogues den, anywhere with a range I think. Bank has to be close for now or on screen. Once i figure out Rs2Camera, it won't matter.
 
 TODO features:
 
