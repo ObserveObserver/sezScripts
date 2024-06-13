@@ -11,3 +11,4 @@ Script ideas:
 
 1. Barrows
 2. Pickpocketing (high banrate activity, think I can figure out a way)
+3. LLM-based auto-converse (tier-1 priority)
