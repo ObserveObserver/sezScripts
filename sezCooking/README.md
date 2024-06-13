@@ -21,3 +21,5 @@ TODO features:
 4. Automatic detection of food in simple mode.
 
 5. Break handling, I will make this into it's own library.
+
+6. Making pies (inventory management)
