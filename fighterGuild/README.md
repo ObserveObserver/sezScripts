@@ -2,7 +2,7 @@ Warriors Guild (i forget it's not called figthers guild, that's TES lol)
 
 Features:
 
-Does tokens great, banks for food.
+Does tokens great, banks for food. can atm be paired with autofighter to just kill cyclopses.
 
 Todo:
 
