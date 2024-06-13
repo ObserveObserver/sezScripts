@@ -23,3 +23,5 @@ TODO features:
 5. Break handling, I will make this into it's own library.
 
 6. Making pies (inventory management)
+
+7. refactor "food: Int" to use Inventory monoid
