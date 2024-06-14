@@ -2,7 +2,9 @@ Warriors Guild (i forget it's not called figthers guild, that's TES lol)
 
 Features:
 
-Does tokens great, banks for food. can atm be paired with autofighter to just kill cyclopses.
+Does tokens great, banks for food. can atm be paired with autofighter to just kill cyclopses, but i will still add it.
+
+defaults to black armor, change the enum (ill add diff ones later but i think 99% of ppl fight the black armor)
 
 Todo:
 
