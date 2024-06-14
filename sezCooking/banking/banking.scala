@@ -2,15 +2,18 @@ package net.runelite.client.plugins.microbot.sezCooking.banking
 
 import cats.effect.IO
 import cats.effect.unsafe.IORuntime
+import net.runelite.client.plugins.microbot.Microbot
+import net.runelite.client.plugins.microbot.sezCooking.cooking.cooking.{nSleep}
 import net.runelite.client.plugins.microbot.util.Global.{sleep, sleepUntil}
 import net.runelite.client.plugins.microbot.util.bank.Rs2Bank
 import net.runelite.client.plugins.microbot.util.npc.Rs2Npc
 import net.runelite.client.plugins.microbot.sezCooking.location.location._
+import net.runelite.client.plugins.microbot.util.player.Rs2Player
+import net.runelite.client.plugins.microbot.sezCooking.sezCookingPlugin
 
 
 object banking {
   val version: Double = 1.0;
-
   def mainBanking(food: Int): IO[Unit] = {
     println("bank")
     val loc = getLocation()
@@ -31,15 +34,24 @@ object banking {
 
   def manageBank(food: Int): IO[Boolean] = {
     for {
-      _ <- IO(sleep(1000,1300))
+      _ <- IO(nSleep(500,1000,2500,0.1))
       _ <- IO(Rs2Bank.depositAll)
-      _ <- IO(sleep(1000,1300))
+      _ <- IO(nSleep(500,1100,2500,0.1))
       _ <- IO(Rs2Bank.withdrawAll(food))
-      _ <- IO(sleep(300,700))
+      _ <- IO(nSleep(500,1000,2500,0.1))
       res <- IO(Rs2Bank.closeBank)
     } yield(res)
   }
 
+  def checkIfOut(food: Int): IO[Unit] = {
+    if (!Rs2Bank.hasItem(food)) {
+      Rs2Bank.closeBank
+      sleep(500)
+      Rs2Player.logout()
+      Microbot.pauseAllScripts = true
+    }
+    IO.unit
+  }
   def openThievesBank(): IO[Unit] = {
     for {
       _ <- IO(Rs2Npc.interact(3194, "bank"))
@@ -56,6 +68,7 @@ object banking {
   def otherMain(food: Int): IO[Unit] = {
     for {
       _ <- IO(openBank).unsafeRunSync()(getRuntime)
+      _ <- checkIfOut(food)
       _ <- IO(manageBank(food)).unsafeRunSync()(getRuntime)
     } yield()
   }
