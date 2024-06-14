@@ -8,16 +8,22 @@ Rogues den, anywhere with a range I think. Bank has to be close for now or on sc
 
 gaussian sleeps based on a skewed normal distribution. skew will be adjusted off runtime in future to simulate fatigue.
 
+Usage: 
+
+start with raw food in inv, can be near bank or range. 
+
+**confirmed locations it works**:
+
+rogues guild, cooks guild, nardah, hosidius kitchen
+
 TODO features:
 
 1. Scripted lists in advanced settings, [Shark,Tuna] where if you're out of sharks, it'll do tunas next.
 
 5. Sleep power ratio setting. If your ping is high, you can set a slider to give the sleeps a little more leeway.
 
-6. Automatic detection of food in simple mode.
-
 7. Break handling, I will make this into it's own library.
 
 8. Making pies (inventory management)
 
-9. refactor "food: Int" to use Inventory monoid
+9. refactor "food: Int" to use Inventory monoid (important for pies in future)
