@@ -7,6 +7,10 @@ when compiling, lombok hates scala. but it's possible to integrate scala into yo
 
 also sometimes things will just break for no reason, running Runelite lifecycle install and refreshing maven generally helps. rarely it doesn't and you're SOL and have to remerge. it's awesome.
 
+your pom.xml needs scala cats (version which does NOT have scala 3 support or it will not compile; goes for all dependencies!), cats effect and scala 2.13.14. 
+
+when i'm comfortable with how scripts are, i'll release my pom.xml i use to compile against. until then **probably dont use these** unless ur willing to go thru the headache.
+
 Script ideas:
 
 1. Barrows
