@@ -1,5 +1,5 @@
 # sezScripts
-scala scripts for Microbot, all WIP. when they're tidy ill release a jar and the pom.xml's required.
+scala scripts for Microbot, all WIP, all (mostly!) pure fp scala. when they're tidy ill release a jar and the pom.xml's required.
 
 for future reference:
 
@@ -15,4 +15,4 @@ Script ideas:
 
 1. Barrows
 2. Pickpocketing (high banrate activity, think I can figure out a way)
-3. LLM-based auto-converse (tier-1 priority)
+3. LLM-based auto-converse (tier-1 priority). this sounds cringe, but there's ways to generate real-sounding stuff with enough prompt hacking. leaning towards deepseek, as API access is free but there will be multiple options.
