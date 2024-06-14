@@ -1,4 +1,4 @@
-cooking
+sezCooking
 
 atm supports pretty much everywhere, including rogues den and nardah clay oven. food has to be changed in script because Rs2Inventory was being weird. ill fix it soon.
 
