@@ -1,22 +1,5 @@
 package net.runelite.client.plugins.microbot.sezCooking;
 
-/*
-   Hunting Script
-   Sezen
-
-  Hunts shit, so far we have:
-
-  Butterflies
-  Salamanders
-
-  With future support for chins coming.
-
-  Sleeps must be changed based off ping, in future a sleep modifier
-  will be included in the settings. Ping detection is probably better
-  so I may just do that instead :)
-
- */
-
 import cats._
 import cats.data.State
 import cats.effect.IO
