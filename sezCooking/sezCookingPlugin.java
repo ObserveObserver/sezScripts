@@ -37,6 +37,9 @@ public class sezCookingPlugin extends Plugin {
     @Inject
     sezCookingScript sezCookingScript;
 
+    public static long startTimeMillis = System.currentTimeMillis();
+
+
 
     @Override
     protected void startUp() throws AWTException {
