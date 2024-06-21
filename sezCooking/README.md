@@ -4,7 +4,7 @@ atm supports pretty much everywhere, including rogues den and nardah clay oven. 
 
 Features:
 
-Rogues den, anywhere with a range I think. Bank has to be close for now or on screen. Once i figure out Rs2Camera, it won't matter.
+Rogues den, anywhere with a range or clay oven, I think. Bank has to be close for now or on screen, i think. Once i figure out Rs2Camera, it won't matter.
 
 gaussian sleeps based on a skewed normal distribution. skew will be adjusted off runtime in future to simulate fatigue.
 
