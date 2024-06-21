@@ -1,6 +1,8 @@
 # sezScripts
 scala scripts for Microbot, all WIP, all (mostly!) pure fp scala. when they're tidy ill release a jar and the pom.xml's required.
 
+pom.xml is now included, it contains stuff like cats and scalaj for the LLM autotyper i'm making. feel free to remove what isn't needed if picking and choosing.
+
 for future reference:
 
 when compiling, lombok hates scala. but it's possible to integrate scala into your lombok'd java, esp with a java helper. in these, the plugin files serve as lombok helpers and allow us to pass getters. 
