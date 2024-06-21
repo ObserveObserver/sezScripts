@@ -47,8 +47,6 @@ class sezCookingScript extends Script {
 
   def task(config: sezCookingConfig, food: Int): Runnable = new Runnable {
     def run(): Unit = {
-      var sleep1 = 0
-      var sleep2 = 0
       getState(food).run(true).value match {
         case (true,_)  => mainCooking(food)
         case (false,_) => mainBanking(food)
