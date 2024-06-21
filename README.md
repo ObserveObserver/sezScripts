@@ -13,8 +13,11 @@ your pom.xml needs scala cats (version which does NOT have scala 3 support or it
 
 when i'm comfortable with how scripts are, i'll release my pom.xml i use to compile against. until then **probably dont use these** unless ur willing to go thru the headache.
 
+In progress:
+
+1. LLM-based autotyper. Works, just need to implement more API's than deepseek (though I have no keys so deepseek may be it for now, at least it's cheap as shit)
+
 Script ideas:
 
 1. Barrows
 2. Pickpocketing (high banrate activity, think I can figure out a way)
-3. LLM-based auto-converse (tier-1 priority). this sounds cringe, but there's ways to generate real-sounding stuff with enough prompt hacking. leaning towards deepseek, as API access is free but there will be multiple options.
