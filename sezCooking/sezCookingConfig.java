@@ -4,7 +4,6 @@ import net.runelite.client.config.Config;
 import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 import net.runelite.client.config.ConfigSection;
-import net.runelite.client.plugins.microbot.fighterGuild.enums.armorToKill;
 
 @ConfigGroup("fighterGuild")
 public interface sezCookingConfig extends Config {
@@ -18,11 +17,11 @@ public interface sezCookingConfig extends Config {
     @ConfigItem(
             keyName = "Mode",
             name = "Mode",
-            description = "Choose your mode of hunter",
+            description = "Placeholder",
             position = 0,
             section = generalSection
     )
-    default armorToKill armorToKill() {
-        return armorToKill.BLACK;
+    default int returnBlah() {
+        return 0;
     }
 }
