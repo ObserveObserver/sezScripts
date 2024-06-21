@@ -67,7 +67,7 @@ import scala.math._
       runtime
     }
     // Skewed normal distribution sleep
-    // Usage: nSleep(min,avg,max,skew) where 0.0 = no skew, 0.1 = right skew
+    // Usage: nSleep(min,avg,max,skew) where -0.1 = left skew, 0.0 = no skew, 0.1 = right skew ... etc
     // 0.1 is quite a bit.
     def skewNormal(mean: Double, stdDev: Double, skew: Double): Double = {
       val normal = new NormalDistribution(0, 1)
