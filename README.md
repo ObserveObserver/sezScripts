@@ -15,7 +15,7 @@ when i'm comfortable with how scripts are, i'll release my pom.xml i use to comp
 
 In progress:
 
-1. LLM-based autotyper. Works, just need to implement more API's than deepseek (though I have no keys so deepseek may be it for now, at least it's cheap as shit)
+1. LLM-based autotyper/converser. Works, just need to implement more API's than deepseek (though I have no keys so deepseek may be it for now, at least it's cheap as shit)
 
 Script ideas:
 
