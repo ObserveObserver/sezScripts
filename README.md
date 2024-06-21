@@ -22,4 +22,4 @@ In progress:
 Script ideas:
 
 1. Barrows
-2. Pickpocketing (high banrate activity, think I can figure out a way)
+2. GOTR (probably next up, since someone is working on barrows but ill probably still do barrows in future)
