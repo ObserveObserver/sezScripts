@@ -32,11 +32,11 @@ import scala.math._
     }
 
     def clickRange(): IO[Unit] = {
-      if (Rs2GameObject.get("range") != null) {
-        Rs2GameObject.interact("range", "cook")
+      if (Rs2GameObject.get("clay oven") != null) {
+          Rs2GameObject.interact("clay oven", "cook")
       }
-      else if (Rs2GameObject.get("clay oven") != null) {
-        Rs2GameObject.interact("clay oven", "cook")
+      else if (Rs2GameObject.get("range") != null) {
+          Rs2GameObject.interact("range", "cook")
       }
       IO.unit
     }
@@ -66,7 +66,9 @@ import scala.math._
       val runtime: IORuntime = IORuntime.global
       runtime
     }
-
+    // Skewed normal distribution sleep
+    // Usage: nSleep(min,avg,max,skew) where 0.0 = no skew, 0.1 = right skew
+    // 0.1 is quite a bit.
     def skewNormal(mean: Double, stdDev: Double, skew: Double): Double = {
       val normal = new NormalDistribution(0, 1)
       val u = normal.sample()
