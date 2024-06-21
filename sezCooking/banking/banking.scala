@@ -15,9 +15,7 @@ import net.runelite.client.plugins.microbot.sezCooking.sezCookingPlugin
 object banking {
   val version: Double = 1.0;
   def mainBanking(food: Int): IO[Unit] = {
-    println("bank")
     val loc = getLocation()
-    println(loc)
     loc match {
       case "thieves guild" => thievesMain(food).unsafeRunSync()(getRuntime)
       case _ => otherMain(food).unsafeRunSync()(getRuntime)
