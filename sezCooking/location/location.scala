@@ -12,8 +12,6 @@ object location {
   }
 
   def getLocation(): String = {
-    println(Rs2Player.getWorldLocation)
-    println(Rs2Walker.isInArea(thievesGuild.nwCorner, thievesGuild.seCorner))
     Rs2Player.getWorldLocation match {
       case loc if Rs2Walker.isInArea(thievesGuild.nwCorner, thievesGuild.seCorner) => "thieves guild"
       case _ => "somewhere unremarkable"
