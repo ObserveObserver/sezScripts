@@ -23,3 +23,9 @@ Script ideas:
 
 1. Barrows
 2. GOTR (probably next up, since someone is working on barrows but ill probably still do barrows in future)
+
+LLM discussion:
+
+Why? isn't it expensive?: You can get away with not using many tokens for Runescape discussions. The script will speak 2-3 lines every hour, it ends up being like 300-600 tokens/h, most if it being the very long prompt (the prompt that will be included by default is long, but tries its best to make it very hard to prompt hack.)
+
+Atm, stuff like "end the scenario" that works with 99% of chatbots doesn't break it, asking it random questions about history or math will not cause it to start spewing about the history of warlord-era china or something. Getting a prompt such that it types like a real player, doesn't break and is able to generate discussion has been more difficult than I thought; though, I think I've stumbled onto a good one tentatively.
