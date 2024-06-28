@@ -10,7 +10,7 @@ gaussian sleeps based on a skewed normal distribution. skew will be adjusted off
 
 Usage: 
 
-**Create a list in the settings of your desired food, delimited by ",".**
+**Login first lol. Create a list in the settings of your desired food, delimited by ",".**
 
 **i.e.: raw shark,raw tuna**
 
