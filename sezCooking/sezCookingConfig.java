@@ -17,7 +17,7 @@ public interface sezCookingConfig extends Config {
     @ConfigItem(
             keyName = "Items To Cook",
             name = "Items To Cook",
-            description = "Raw items, in a list: i.e.: raw shark,raw tuna",
+            description = "Raw items, in a list: i.e.: raw shark,raw tuna. if empty, will set itemToCook to 1st raw food in inventory.",
             position = 1,
             section = generalSection
     )
