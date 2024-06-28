@@ -10,20 +10,24 @@ gaussian sleeps based on a skewed normal distribution. skew will be adjusted off
 
 Usage: 
 
-start with raw food in inv, can be near bank or range. 
+**Create a list in the settings of your desired food, delimited by ",".**
+
+**i.e.: raw shark,raw tuna**
+
+**ALTERNATIVELY, for more simple startup, start with a raw food in your inv and it'll use that.**
+
+--
 
 **confirmed locations it works**:
 
 rogues guild, cooks guild, nardah, hosidius kitchen
 
+it should work everywhere the range is close, tho.
+
 TODO features:
 
-1. Scripted lists in advanced settings, [Shark,Tuna] where if you're out of sharks, it'll do tunas next.
+1. Sleep power ratio setting. If your ping is high, you can set a slider to give the sleeps a little more leeway.
 
-5. Sleep power ratio setting. If your ping is high, you can set a slider to give the sleeps a little more leeway.
+2. Making pies (inventory management)
 
-7. Break handling, I will make this into it's own library.
-
-8. Making pies (inventory management)
-
-9. refactor "food: Int" to use Inventory monoid (important for pies in future)
+3. refactor "food: Int" to use Inventory monoid (important for pies in future)
