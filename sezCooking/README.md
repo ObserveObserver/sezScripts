@@ -12,7 +12,7 @@ Usage:
 
 **Login first lol. Create a list in the settings of your desired food, delimited by ",".**
 
-**i.e.: raw shark,raw tuna**
+**i.e.: raw shark,raw tuna** (this will cook all raw shark, then all raw tuna, then logout)
 
 **ALTERNATIVELY, for more simple startup, start with a raw food in your inv and it'll use that.**
 
