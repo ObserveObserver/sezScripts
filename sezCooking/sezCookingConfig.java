@@ -15,25 +15,15 @@ public interface sezCookingConfig extends Config {
     String generalSection = "general";
 
     @ConfigItem(
-            keyName = "Mode",
-            name = "Mode",
-            description = "Placeholder",
-            position = 0,
-            section = generalSection
-    )
-    default int returnBlah() {
-        return 0;
-    }
-    @ConfigItem(
-            keyName = "Second Item",
-            name = "Second Item",
-            description = "Sets Second Item, use either Item ID or Item Name",
+            keyName = "Items To Cook",
+            name = "Items To Cook",
+            description = "Raw items, in a list: i.e.: raw shark,raw tuna",
             position = 1,
             section = generalSection
     )
 
     default String cookingItems() {
-        return "Logs";
+        return "raw shark";
     }
 
 }
