@@ -3,26 +3,26 @@ package net.runelite.client.plugins.microbot.sezCooking.banking
 import cats.effect.IO
 import cats.effect.unsafe.IORuntime
 import net.runelite.client.plugins.microbot.Microbot
-import net.runelite.client.plugins.microbot.sezCooking.cooking.cooking.{nSleep}
+import net.runelite.client.plugins.microbot.sezCooking.cooking.cooking.nSleep
 import net.runelite.client.plugins.microbot.util.Global.{sleep, sleepUntil}
 import net.runelite.client.plugins.microbot.util.bank.Rs2Bank
 import net.runelite.client.plugins.microbot.util.npc.Rs2Npc
 import net.runelite.client.plugins.microbot.sezCooking.location.location._
 import net.runelite.client.plugins.microbot.util.player.Rs2Player
-import net.runelite.client.plugins.microbot.sezCooking.sezCookingPlugin
+
 
 
 object banking {
+
   val version: Double = 1.0;
-  def mainBanking(food: Int): IO[Unit] = {
+
+  def mainBanking(food: List[String]): IO[Unit] = {
     val loc = getLocation()
     loc match {
       case "thieves guild" => thievesMain(food).unsafeRunSync()(getRuntime)
       case _ => otherMain(food).unsafeRunSync()(getRuntime)
     }
-    for {
-     _ <- IO(manageBank(food)).unsafeRunSync()(getRuntime)
-    } yield()
+    IO.unit
   }
 
   def getRuntime(): IORuntime = {
@@ -42,9 +42,9 @@ object banking {
   }
 
   def checkIfOut(food: Int): IO[Unit] = {
-    if (!Rs2Bank.hasItem(food)) {
+    if (food == 0) {
       Rs2Bank.closeBank
-      sleep(500)
+      sleep(1000,1500)
       Rs2Player.logout()
       Microbot.pauseAllScripts = true
     }
@@ -53,21 +53,32 @@ object banking {
   def openThievesBank(): IO[Unit] = {
     for {
       _ <- IO(Rs2Npc.interact(3194, "bank"))
+      _ <- IO(sleepUntil(() => Rs2Bank.isOpen),35000)
     } yield()
   }
 
-  def thievesMain(food: Int): IO[Unit] = {
+  def getOurFood(food: List[String] ): Int = {
+    val ourFoodCheck = food.map(x => Rs2Bank.hasItem(x))
+    if (!ourFoodCheck.contains(true)) return 0
+    val ourFoodZip = food.zip(ourFoodCheck)
+    val ourFood = Rs2Bank.findBankItem(ourFoodZip.collect { case (item,true) => item }.head).id
+    if (ourFood != null) println(ourFood) else println ("no")
+    ourFood
+  }
+
+  def thievesMain(food: List[String]): IO[Unit] = {
     for {
       _ <- IO(openThievesBank).unsafeRunSync()(getRuntime)
-      _ <- IO(manageBank(food)).unsafeRunSync()(getRuntime)
+      _ <- checkIfOut(getOurFood(food))
+      _ <- IO(manageBank(getOurFood(food))).unsafeRunSync()(getRuntime)
     } yield()
   }
 
-  def otherMain(food: Int): IO[Unit] = {
+  def otherMain(food: List[String]): IO[Unit] = {
     for {
       _ <- IO(openBank).unsafeRunSync()(getRuntime)
-      _ <- checkIfOut(food)
-      _ <- IO(manageBank(food)).unsafeRunSync()(getRuntime)
+      _ <- checkIfOut(getOurFood(food))
+      _ <- IO(manageBank(getOurFood(food))).unsafeRunSync()(getRuntime)
     } yield()
   }
 

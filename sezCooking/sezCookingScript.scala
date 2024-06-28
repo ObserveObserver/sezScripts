@@ -2,7 +2,6 @@ package net.runelite.client.plugins.microbot.sezCooking;
 
 import cats._
 import cats.data.State
-import cats.effect.IO
 import net.runelite.api.{Client}
 import net.runelite.client.plugins.microbot.util.inventory.{Rs2Inventory, Rs2Item}
 import net.runelite.client.plugins.microbot.{Microbot, Script}
@@ -17,13 +16,13 @@ class sezCookingScript extends Script {
 
   case class Inventory(items: List[Int])
 
+  // inventory monoid will be placed in later when i do pies or something
 
   implicit val inventorySemigroup: Semigroup[Inventory] = new Semigroup[Inventory] {
     def combine(x: Inventory, y: Inventory): Inventory = {
       Inventory(x.items ++ y.items)
     }
   }
-
 
   implicit val inventoryM: Monoid[Inventory] = new Monoid[Inventory] {
     def empty: Inventory = Inventory(List.empty[Int])
@@ -35,17 +34,17 @@ class sezCookingScript extends Script {
   }
 
 
-  def liftIO(action: => Unit): IO[Unit] = IO(action)
-
-
-
-  def getState(food: Int): State[Boolean, Boolean] = State { inventory =>
-    val hasFood = Rs2Inventory.hasItem(food)
+  def getState(food: List[String]): State[Boolean, Boolean] = State { inventory =>
+    val hasFood = food.exists(x => Rs2Inventory.hasItem(x))
     (hasFood, hasFood)
   }
 
+  def getItemsList(list: String): List[String] = {
+    list.split(",").toList
+  }
 
-  def task(config: sezCookingConfig, food: Int): Runnable = new Runnable {
+
+  def task(config: sezCookingConfig, food: List[String]): Runnable = new Runnable {
     def run(): Unit = {
       getState(food).run(true).value match {
         case (true,_)  => mainCooking(food)
@@ -57,7 +56,12 @@ class sezCookingScript extends Script {
 
 
   def main(client: Client, config: sezCookingConfig): Boolean = {
-    val foodList = Rs2Inventory.get("raw",false).id
+    val foodList = if (config.cookingItems() != null) {
+      getItemsList(config.cookingItems())
+    } else {
+      List(Rs2Inventory.get("raw", false).name)
+    }
+    println(foodList.head)
     mainScheduledFuture = scheduledExecutorService.scheduleWithFixedDelay({
       task(config, foodList)
     }, 0, 1000, TimeUnit.MILLISECONDS)

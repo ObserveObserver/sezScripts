@@ -1,6 +1,6 @@
 package net.runelite.client.plugins.microbot.sezCooking.cooking
 
-import cats.data.State
+
 import cats.effect.IO
 import cats.effect.unsafe.IORuntime
 import net.runelite.api.GameObject
@@ -9,12 +9,12 @@ import net.runelite.client.plugins.microbot.util.gameobject.Rs2GameObject
 import net.runelite.client.plugins.microbot.util.inventory.Rs2Inventory
 import net.runelite.client.plugins.microbot.util.keyboard.Rs2Keyboard
 import net.runelite.client.plugins.microbot.util.widget.Rs2Widget
-
 import java.awt.event.KeyEvent.VK_SPACE
 import scala.util.Random
 import net.runelite.client.plugins.microbot.sezCooking.location.location._
 import org.apache.commons.math3.distribution.NormalDistribution
 import scala.math._
+import net.runelite.client.plugins.microbot.Microbot
 
 
   object cooking {
@@ -93,7 +93,7 @@ import scala.math._
 
       // Bound the value between min and max
       val boundedSleepTime = math.max(min, math.min(skewedValue, max)).toInt
-      println("Sleeing for: " + boundedSleepTime)
+      Microbot.status = ("Sleeping for: " + boundedSleepTime)
       sleep(boundedSleepTime)
     }
 
@@ -112,14 +112,16 @@ import scala.math._
       }
 
 
-    def mainCooking(food: Int): Boolean = {
-      println("cooking " + food)
+    def mainCooking(food: List[String]): Boolean = {
+
       val ourLocation = getLocation()
-      println(ourLocation)
+      val ourFoodCheck = food.map(x => Rs2Inventory.hasItem(x))
+      val ourFoodZip = food.zip(ourFoodCheck)
+      val ourFood = Rs2Inventory.get(ourFoodZip.collect { case (item,true) => item }.head).id
       ourLocation match {
-        case "thieves guild" => thievesGuildCook(food).unsafeRunSync()(getRuntime)
+        case "thieves guild" => thievesGuildCook(ourFood).unsafeRunSync()(getRuntime)
         case _ =>
-          startCooking(food).unsafeRunSync()(getRuntime)
+          startCooking(ourFood).unsafeRunSync()(getRuntime)
 
       }
       true

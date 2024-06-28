@@ -24,4 +24,16 @@ public interface sezCookingConfig extends Config {
     default int returnBlah() {
         return 0;
     }
+    @ConfigItem(
+            keyName = "Second Item",
+            name = "Second Item",
+            description = "Sets Second Item, use either Item ID or Item Name",
+            position = 1,
+            section = generalSection
+    )
+
+    default String cookingItems() {
+        return "Logs";
+    }
+
 }
