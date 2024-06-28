@@ -1,5 +1,7 @@
 # sezScripts
-scala scripts for Microbot, all WIP, all (mostly!) pure fp scala. when they're tidy ill release a jar and the pom.xml's required.
+scala scripts for Microbot, all WIP, all (mostly!) pure fp scala. when they're tidy ill release a jar and the pom.xml's required
+
+**REPLACE THE POM.XML WITH THIS ONE IN RUNELITE-CLIENT**
 
 works at least under java 17+
 
