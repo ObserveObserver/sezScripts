@@ -1,11 +1,7 @@
 # sezScripts
-scala scripts for Microbot, all WIP, all (mostly!) pure fp scala. when they're tidy ill release a jar and the pom.xml's required
+scala scripts for Microbot, all WIP, all (mostly!) pure fp scala. when they're tidy ill release a jar and the pom.xml's required.
 
-**REPLACE THE POM.XML WITH THIS ONE IN RUNELITE-CLIENT**
-
-works at least under java 17+
-
-just add folders into net.runelite.client.plugins.microbot
+probably requires compilation under java 22. if using 17, i think it should work since it's scala 2.13.14, but change the lombok version in pom.xml if it doesn't compile.
 
 pom.xml is now included, it contains stuff like cats and scalaj for the LLM autotyper i'm making. feel free to remove what isn't needed if picking and choosing.
 
