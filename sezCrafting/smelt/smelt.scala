@@ -30,7 +30,8 @@ object smelt {
 
   def smelt(gem: String, kind: String): IO[Unit] = {
     for {
-      _ <- IO(Rs2GameObject.interact("volcanic furnace","smelt"))
+      fur <- IO(Rs2GameObject.get("furnace",false))
+      _ <- IO(Rs2GameObject.interact(fur,"smelt"))
       _ <- IO(sleepUntil(() => Rs2Widget.hasWidget("What would you like to make?")))
       _ <- IO(sleep(300,1500))
       _ <- IO(Rs2Widget.clickWidget(getSmeltWidget(gem, kind).unsafeRunSync()(rt)))
