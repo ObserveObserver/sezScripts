@@ -1,12 +1,14 @@
 package net.runelite.client.plugins.microbot.sezCrafting.smelt
 
 import cats.effect.IO
+import net.runelite.api.GameObject
 import net.runelite.client.plugins.microbot.sezCrafting.walking.walking.rt
 import net.runelite.client.plugins.microbot.util.Global.{sleep, sleepUntil, sleepUntilTrue}
 import net.runelite.client.plugins.microbot.util.gameobject.Rs2GameObject
 import net.runelite.client.plugins.microbot.util.inventory.Rs2Inventory
 import net.runelite.client.plugins.microbot.util.math.Random
 import net.runelite.client.plugins.microbot.util.widget.Rs2Widget
+
 import scala.jdk.CollectionConverters._
 
 object smelt {
@@ -28,11 +30,17 @@ object smelt {
     }
   }
 
+  def clickFurnace(fur: GameObject): IO[Unit] = {
+    for {
+      _ <- IO(Rs2GameObject.interact(fur,"smelt"))
+      _ <- IO(sleepUntil(() => Rs2Widget.hasWidget("What would you like to make?")),3000)
+      _ <- if (Rs2Widget.hasWidget("What would you like to make?")) { IO.unit } else {IO(clickFurnace(fur))}
+    } yield(IO.unit)
+  }
   def smelt(gem: String, kind: String): IO[Unit] = {
     for {
       fur <- IO(Rs2GameObject.get("furnace",false))
-      _ <- IO(Rs2GameObject.interact(fur,"smelt"))
-      _ <- IO(sleepUntil(() => Rs2Widget.hasWidget("What would you like to make?")))
+      _ <- clickFurnace(fur)
       _ <- IO(sleep(300,1500))
       _ <- IO(Rs2Widget.clickWidget(getSmeltWidget(gem, kind).unsafeRunSync()(rt)))
       _ <- IO(sleepUntilTrue(() => !Rs2Inventory.hasItem("gold bar"),300,60000))

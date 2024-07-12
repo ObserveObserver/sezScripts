@@ -43,6 +43,8 @@ object bank {
       _ <- IO(Rs2Bank.withdrawOne(mouldKind))
       _ <- IO(sleep(300,1000))
       bo <- IO(Rs2Bank.closeBank)
+      _ <- IO(sleep(800,1300))
+      _ <- IO(sleepUntilTrue(() => !Rs2Bank.isOpen, 300, 10000))
       _ <- IO(checkInv(gem,mouldKind))
     } yield(bo)
   }
