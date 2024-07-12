@@ -17,18 +17,25 @@ object smelt {
     val baseAmulet = 29229093
     val baseNecklace = 29229079
     val baseRing = 29229064
+    val baseBracelet = 29229106
     val baseKind = kind match {
       case "amulet" => baseAmulet
       case "necklace" => baseNecklace
       case "ring" => baseRing
+      case "bracelet" => baseBracelet
     }
-    gem match {
+    val num = gem match {
       case "sapphire" => IO(baseKind + 1)
       case "emerald" => IO(baseKind + 2)
       case "ruby" => IO(baseKind + 3)
       case "diamond" => IO(baseKind + 4)
     }
-  }
+    if (baseKind == baseBracelet) {
+      num.map(x => x + 1)
+    } else {
+      num
+    }
+   }
 
   def clickFurnace(fur: GameObject): IO[Unit] = {
     for {

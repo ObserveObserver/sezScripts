@@ -9,7 +9,8 @@ public enum JewelryType {
 
     RING("ring"),
     NECKLACE("necklace"),
-    AMULET("amulet");
+    AMULET("amulet"),
+    BRACELET("bracelet");
 
     private final String jewelry;
 

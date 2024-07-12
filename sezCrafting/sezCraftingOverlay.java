@@ -1,10 +1,14 @@
 package net.runelite.client.plugins.microbot.sezCrafting;
 
 import net.runelite.client.plugins.microbot.Microbot;
+import net.runelite.client.plugins.microbot.globval.WidgetIndices;
 import net.runelite.client.ui.overlay.OverlayPanel;
 import net.runelite.client.ui.overlay.OverlayPosition;
 import net.runelite.client.ui.overlay.components.LineComponent;
 import net.runelite.client.ui.overlay.components.TitleComponent;
+import net.runelite.client.plugins.microbot.util.grandexchange.Rs2GrandExchange;
+import net.runelite.client.plugins.microbot.sezCrafting.state.*;
+import net.runelite.client.plugins.microbot.sezCrafting.sezCraftingScript;
 
 import javax.inject.Inject;
 import java.awt.*;
@@ -33,7 +37,7 @@ public class sezCraftingOverlay extends OverlayPanel {
                     .left(Microbot.status)
                     .build());
             panelComponent.getChildren().add(LineComponent.builder()
-                    .left("Hello: I don't have much to put here really :)")
+                    .left("Profit: " + state.jewelryProfitSaved())
                     .build());
 
         } catch(Exception ex) {

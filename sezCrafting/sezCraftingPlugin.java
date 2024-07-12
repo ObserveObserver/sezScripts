@@ -45,8 +45,9 @@ public class sezCraftingPlugin extends Plugin {
         if (overlayManager != null) {
             overlayManager.add(sezCraftingOverlay);
         }
+
         client = Microbot.getClient();
-        sezCraftingScript.main(client, config);
+        sezCraftingScript.main(client, Microbot.getItemManager(), config);
     }
 
 

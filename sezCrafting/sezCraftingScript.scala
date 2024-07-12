@@ -4,6 +4,7 @@ import cats._
 import cats.effect.IO
 import cats.effect.unsafe.IORuntime
 import net.runelite.api.Client
+import net.runelite.client.game.ItemManager
 import net.runelite.client.plugins.microbot.sezCrafting.bank.bank.bankingLogic
 import net.runelite.client.plugins.microbot.sezCrafting.smelt.smelt.smelt
 import net.runelite.client.plugins.microbot.{Microbot, Script}
@@ -36,7 +37,7 @@ class sezCraftingScript extends Script {
     }
   }
 
-  def task(config: sezCraftingConfig): Runnable = new Runnable {
+  def task(config: sezCraftingConfig, item: ItemManager, client: Client): Runnable = new Runnable {
     def run(): Unit = {
       val gem = config.gemStones().toString
       val kind = config.jewelry().toString
@@ -45,9 +46,11 @@ class sezCraftingScript extends Script {
       }
       getState(gem).run("bank").value._1 match {
         case "walkBank" => walkBank.unsafeRunSync()(rt)
-        case "bank" => bankingLogic(gem,kind).unsafeRunSync()(rt)
+        case "bank" => bankingLogic(gem, kind).unsafeRunSync()(rt)
         case "walkTo" => walkTo.unsafeRunSync()(rt)
-        case "smelt" => smelt(gem,kind).unsafeRunSync()(rt)
+        case "smelt" => smelt(gem, kind).unsafeRunSync()(rt)
+                        jewelryCount += 13
+                        jewelryProfit(jewelryCount,config,item)
         case _ => IO(println("uh oh")).unsafeRunSync()(rt)
       }
     }
@@ -58,10 +61,14 @@ class sezCraftingScript extends Script {
     runtime
   }
 
-  def main(client: Client, config: sezCraftingConfig): Boolean = {
-    mainScheduledFuture = scheduledExecutorService.scheduleWithFixedDelay({
-      task(config)
-    }, 0, 1000, TimeUnit.MILLISECONDS)
+  def main(client: Client, item: ItemManager, config: sezCraftingConfig): Boolean = {
+    val getClient = client
+    jewelryProfitSaved = 0
+    jewelryCount = 0
+    mainScheduledFuture = scheduledExecutorService.scheduleWithFixedDelay( {
+      task (config, item, getClient)
+    } , 0, 1000, TimeUnit.MILLISECONDS)
     true
   }
+
 }
