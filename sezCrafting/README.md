@@ -4,4 +4,6 @@ works as far as i know. set settings in config, you may wanna turn the camera (i
 
 Sapphire/ruby/emerald/diamond. i'll add more later but just wanna get this out.
 
+rings/ammys/necklaces/bracelets.
+
 more random sleeps and skewed-norm dist sleep will come very shortly. again, jus wanna put the initial "release" out there.
